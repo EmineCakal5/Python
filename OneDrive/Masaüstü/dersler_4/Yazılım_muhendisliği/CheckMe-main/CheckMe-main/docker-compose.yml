@@ -1,0 +1,30 @@
+services:
+  web:
+    build:
+      context: ./Web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Web:/app
+      - /app/node_modules
+      - ./Storage:/app/storage
+    environment:
+      - NODE_ENV=development
+    restart: always
+
+  tester:
+    build: ./Tester
+    platform: linux/amd64
+    container_name: checkme-tester
+    volumes:
+      - ./Tester:/app
+      - ./Storage:/app/storage
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TESTER_STORAGE=/app/storage
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - web

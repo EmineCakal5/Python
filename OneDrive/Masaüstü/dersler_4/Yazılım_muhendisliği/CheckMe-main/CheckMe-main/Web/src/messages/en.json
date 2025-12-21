@@ -1,0 +1,11 @@
+{
+  "Index": {
+    "title": "CheckMe Dashboard",
+    "welcome": "Welcome! Enter the GitHub repo link to test your 42 projects.",
+    "placeholder": "GitHub Repo URL (e.g., https://github.com/user/libft)",
+    "start_test": "Start Test",
+    "status": "Status",
+    "project": "Project",
+    "date": "Date"
+  }
+}
